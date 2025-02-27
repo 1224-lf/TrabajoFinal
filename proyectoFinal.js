@@ -1,4 +1,7 @@
 //Variables utiles 
+while (true){
+  
+
 //Precio base de la cotización, en quetzales, lo puede cambiar
 var precio_base = 2000
 
@@ -13,7 +16,8 @@ var casado_50 = 0.3 // 30%
 
 var hijos_recargo = 0.2 // 20%
 
-
+var salario = 0.05 // 5%
+var propiedad = 0.35 // 35%
 //Recargo
 var recargo = 0
 var recargo_total = 0
@@ -21,11 +25,15 @@ var recargo_total = 0
 //Precio final 
 var precio_final = 0
 
+
 //Mensajes de alerta para ingresar datos 
 var nombre = prompt("Ingrese su nombre, por favor")
 var edad = prompt("¿Cuantos años tiene? Ingrese solamente números ")
+var salario_usuario = prompt ("Ingrese su salario") 
+var propiedades_usuario = prompt ("Cuantas propiedad tiene?")
 
 var casado = prompt("¿Está casado actualmente?")
+
 //Comprobamos la edad del cónyuge, solamente si se está casado/a
 var edad_conyuge
 if("SI" == casado.toUpperCase()){
@@ -96,6 +104,16 @@ if (cantidad_hijos > 0) {
   recargo = precio_base * hijos_recargo * cantidad_hijos;
   recargo_total = recargo_total + recargo;
 }
+// 4. Recargo por propiedad
+if ( propiedades_usuario > 0) {
+  recargo = precio_base * propiedad * propiedades_usuario;
+  recargo_total = recargo_total + recargo;
+}
+// 5. Recargo por salario
+if ( salario_usuario > 0) {
+  recargo = precio_base * salario * salario_usuario;
+  recargo_total = recargo_total + recargo;
+}
 
 precio_final = precio_base + recargo_total
 //Resultado
@@ -103,3 +121,10 @@ alert ("Para el asegurado "+nombre)
 alert ("El recargo total sera de: "+recargo_total)
 alert ("El precio sera de: "+precio_final)
 
+var cerrar = prompt ("Deseas terminar las cotizaciones coloca 'salir'")
+if (cerrar === 'salir') {
+  alert ("Cotizaciones Finalizadas")
+  break 
+}
+else {alert ("Nueva cotizacion")}
+}
